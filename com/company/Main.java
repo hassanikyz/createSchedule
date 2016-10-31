@@ -77,12 +77,8 @@ public class Main {
         for (int j=0; j<meetings.size() - 1; j++) {
 
             Meeting meetingToAdd = meetings.get(j);
-
             addToSchedule(allMeetings, meetingToAdd, meetingRooms);
-
-
         }
-
 
         return allMeetings;
     }
@@ -90,18 +86,22 @@ public class Main {
     public static void main(String[] args) {
 
         ArrayList<Meeting> meetings = new ArrayList<>();
+        
+        //generate a meeting list with random durations and start times
         for (int i =0; i<10; i++) {
             int rand = (int)(Math.random() * 10)  + 1;
             int duration = (int)(Math.random() * 2)  + 1;
             System.out.println("value of rand generated is "  + rand + " duration " + duration);
             meetings.add(new Main().new Meeting(i, rand, rand + duration));
         }
-
+        //print the generated list just to see how it looks
         for (int i =0; i<meetings.size() - 1; i++) {
-
             System.out.println(meetings.get(i).id + " " + "start-end " + meetings.get(i).start + "-" +  meetings.get(i).end);
         }
+        //create schedule now
         List<Schedule> s = getSchedule(meetings);
+        
+        //print the result
         for (Schedule s1: s) {
             System.out.println("Inside " +  s1.room);
             for (Meeting m: s1.meetings) {
